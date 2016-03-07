@@ -1,5 +1,5 @@
 #title{
-padding-top: 5px;
+	padding-top: 5px;
 }
 #headimg{
 	width:100%;
@@ -7,13 +7,13 @@ padding-top: 5px;
 	position:relative;
 }
 #comName{
-position: relative;
-bottom: 100px;
+	position: relative;
+	bottom: 100px;
 
 }
 #icon{
-position: relative;
-bottom: 220px;
+	position: relative;
+	bottom: 220px;
 }
 #iconFile{
 	position: relative;
@@ -26,66 +26,67 @@ bottom: 220px;
 }
 
 #userimage{
-width:40%;
-height:10%;
+	width:40%;
+	height:10%;
 }
 
 #date{
-padding-top: 50px;
+	padding-top: 50px;
 }
 #topicIcon{
-width:70px;
-height:70px;
+	width:70px;
+	height:70px;
 }
 
 #topiclist{
-border: medium solid #ff00ff;
+	border: medium solid #ff00ff;
 }
 #createtopic{
-padding-top: 20px;
+	padding-top: 20px;
 }
 #joincom{
-border: medium solid #ff00ff;
+	border: medium solid #ff00ff;
 }
 #slide{
 	height:30px;
 }
 #showwdel{
-width:100px;
-height:50px;
-margin-top: 10px;
+	width:100px;
+	height:50px;
+	margin-top: 10px;
 }
 
 
-#editButton{
+#edit{
 	position: relative;
-	bottom: 85px;
-	font-size: 15px;
+	bottom: 150px;
+	margin-left: 90%;
+	font-size: 22px;
 }
 
 #userimage{
-width:40%;
-height:10%;
+	width:40%;
+	height:10%;
 }
 #communityList{
-border: medium solid #B22222;
+	border: medium solid #B22222;
 }
 
 .changeEffectHead{
 	position:absolute;
-	top:8px;
+	top:60px;
 	left:0px;
 	width:100%;
-	height:240px;
+	height:250px;
 	font-size: 45px;
 	text-align: right;
 	vertical-align: middle;
-	color: #ffd;
+	color: #fff;
 
 
 }
 .changeEffectHead:hover{
-	box-shadow: 0 0 0 8px #88E8FF ;
+	box-shadow: 0 0 0 8px #CCC inset ;
 	cursor: pointer;
 	background-color: rgba(0,0,0,0.3);
 }
@@ -93,20 +94,78 @@ border: medium solid #B22222;
 .changeEffectIcon{
 	position:absolute;
 	margin-top:	-110px;
-	left:70px;
-	width:6.5%;
-	height:125px;
-	font-size: 18px;
-	text-align: center;
-	vertical-align: middle;
-	color: #ffd;
+	left:65px;
+	width:130px;
+	height:100%;
+	font-size: 23px;
+	color: #fff;
 }
 .changeEffectIcon:hover{
-	box-shadow: 0 0 0 8px #88E8FF ;
+	box-shadow: 0 0 0 8px #CCC inset;
 	cursor: pointer;
 	background-color: rgba(0,0,0,0.3);
 }
+#changeEffectIconText{
+	text-align: center;
+	margin-top: 20px;
+}
 
 #headerText{
-	margin-right: 70px;
+	margin-right: 39%;
+	margin-top: 110px;
 }
+
+#mobileHead{
+	width:100%;
+	height:120px;
+	position:relative;
+}
+
+#mobileCommName{
+	position:relative;
+	margin-left:15%;
+	margin-top:-60px;
+	background-color:rgba(255,255,255,0.7);
+	font-size: 18px;
+}
+
+#mobileCommIcon{
+	width:80px;
+	height:80px;
+	position:relative;
+	bottom:110px;
+	margin-left:-2%;
+}
+
+#mobileCommProfile{
+	margin-top: -120px;
+}
+
+#mobileMemberIcon{
+	width : 60px;
+	height: 60px;
+}
+
+#mobileTopicIcon{
+	width : 70px;
+	height: 70px;
+}
+
+#mobileCreateUser{
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+#mobileCreateDate{
+	padding:0 0;
+	margin-bottom: 5px;
+}
+
+#mobileTopicName{
+	margin-bottom: 0px;
+}
+
+.mobileText{
+	margin-left: 20px;
+}
+

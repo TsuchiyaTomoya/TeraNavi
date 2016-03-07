@@ -26,11 +26,10 @@ $(function(){
                 if(userId ==user_id){
                     console.log(i + " " + userId + " "+ body+user_id);
 
-                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-6\"></div><div class=\"col-md-1\"></div><div class=\"col-md-5\"><div class=\"box\"><p class=\"content\">" + userName + body + date + "</p></div><img class=\"account\" src=\"" + iconPath + "\"/></div></div>"
-                    );
+                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-6\"></div><div class=\"col-md-6\"><div class=\"box\"><p class=\"content\">" + body + "</p></div><p class=\"Mydate\">" + date + "<img class=\"account img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"Myusername\">" + userName + "</p></div></div>");
                 }else{
                     console.log(i + " " + userId + " " + body+user_id);
-                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-5\"><div class=\"other_box\"><p class=\"other_content\">" + userName + body + date + "</p></div><img class=\"other_account\" src=\"" + iconPath + "\"/></div><div class=\"col-md-5\"></div><div class=\"col-md-1\"></div></div>"
+                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-6\"><div class=\"other_box\"><p class=\"other_content\">" + body + "</p></div><p class=\"date\">" + date + "<p><img class=\"other_account img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"username\">" + userName + "</p></div><div class=\"col-md-6\"></div></div>"
                     );
                 }
             }

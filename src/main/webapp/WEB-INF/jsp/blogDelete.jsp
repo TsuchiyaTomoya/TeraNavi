@@ -10,16 +10,15 @@
 <head>
     <meta charset="UTF-8">
     <title>ブログ閉鎖</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>ブログの設定</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
 
 
 
@@ -27,17 +26,34 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+    <%-- トップのナビゲーションを読み込み --%>
+    <jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
-    <div class="container">
-       <div class="row">
-           <h1>ブログ閉鎖ページ</h1>
-		   <h1>本当に閉鎖してもよろしいですか？</h1>
-           <form action="front/blogSetting" method="post">
+    <div class="section">
+        <div class="container">
+           <div class="row">
+
+                <!-- 2列をサイドメニューに割り当て -->
+                <div class="col-md-2">
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#blogSettingTab").attr("class","active");
+                      $("#openBlogTab").attr("class","active");
+                    </script>
+
+                </div>
+
+                <div class="col-md-1"></div>
+		        <h1>本当にブログを閉鎖してもよろしいですか？</h1>
+                <form action="front/blogSetting" method="post">
                <input type="hidden" name="title" value="Default">
 			   <input type="hidden" name="headerPath" value="Default">
 			   <input type="hidden" name="explanation" value="Default">
 			   <input type="hidden" name="status" value="0">
-               <button type="submit">YES</button><button type="button" onclick="history.back();">NO</button>
+                <div class="col-md-1"></div>
+               <button type="submit" class="btn btn-warning">はい</button>
+               <div class="col-md-1"></div>
+               <button type="button" class="btn btn-warning" onclick="history.back();">いいえ</button>
            </form>
        </div><!--end row-->
     </div><!--end container-->

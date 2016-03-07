@@ -21,36 +21,36 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-	<h5 class="page-title">検索結果</h5>
+	<h2 class="text-center"><b class="page-title">検索結果</b></h2>
     <hr id="hr" class="hr">
-    <p class="p-level">ユーザの検索結果です</p>
-    
+    <h3 class="p-level">ユーザの検索結果</h3>
+
     <br>
     <div class="section">
       <div class="container">
 		<c:forEach var="item" items="${result}">
 			<div class="row">
-			  <div class="col-md-3">
+			  <div class="col-md-7 col-md-offset-1">
 				<img src="${item.iconPath}" class="img-responsive">
-			  </div>
-			  <div class="col-md-9">
-				<h1>${item.userName}</h1>
-				<h3>${item.nameKana}</h3>
-				<p>${item.profile}<br>
-					<form action="dmsend" method="post">
-						&nbsp;&nbsp;本文:<input type="text" name="messageBody"><br>
-						<input type="hidden" name="receiveUserId" value="${item.id}">
-						<input type="submit" value="送信"><br><br>
-					</form>
-				</p>
-			  </div>
-			</div>
-			
-			
-	   	</c:forEach>
+                    <div class="prof">
+                        <h2>${item.userName}</h2>
+                        <h3>${item.nameKana}</h3>
+                        <p>${item.profile}</p>
+    				    <form action="dmsend" method="post">
+                            <div class="form-inline">
+                                <label class="control-label">本文</label>
+                                <input class="form-control" type="text" name="messageBody">
+    				            <input type="hidden" name="receiveUserId" value="${item.id}">
+    				            <button type="submit" class="btn btn-default">送信</button>
+                            </div>
+    				    </form>
+			        </div>
+                </div>
+            </div><br>
+	   	</c:forEach><br>
       </div>
     </div>
-	
+
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 

@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Lato');
 /*!
- * Default theme for Pingendo 
- * Homepage: http://pingendo.com  
- * Copyright 2015 Pingendo 
- * Licensed under MIT 
+ * Default theme for Pingendo
+ * Homepage: http://pingendo.com
+ * Copyright 2015 Pingendo
+ * Licensed under MIT
  * Based on Bootstrap v3.3.4
 */
-/* Add custom CSS classes here 
- * 
+/* Add custom CSS classes here
+ *
  * img {
  *   box-shadow : 0px 0px 10px black !important;
  * }
@@ -1128,6 +1128,15 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+.img-responsive{
+    max-width: 140px;
+    height: auto;;
+    float: left;
+}
+.prof{
+    position: relative;
+    left: 20px;
 }
 .img-rounded {
   border-radius: 5px;
@@ -6777,7 +6786,7 @@ body {
 }
 /* PINGENDO COMMENT DO NOT REMOVE */
 body {
-  background-color: #f0f8ff;
+  background-color: #fff;
 }
 .page-title {
   font-size: 50;
@@ -6789,7 +6798,7 @@ body {
 }
 .p-level {
   color: #96A3F0;
-  left: 15%;
+  left: 13%;
   position: absolute;
 }
 .select {

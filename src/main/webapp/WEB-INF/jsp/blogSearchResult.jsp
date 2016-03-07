@@ -24,7 +24,7 @@
 	<h5 class="page-title">検索結果</h5>
     <hr id="hr" class="hr">
     <p class="p-level">ブログの検索結果です</p>
-    
+
     <br>
     <div class="section">
       <div class="container">
@@ -34,18 +34,20 @@
 				<img src="${item.headerPath}" class="img-responsive">
 			  </div>
 			  <div class="col-md-9">
-				<h1>${item.title}</h1>
+                  <a href="/TeraNavi/front/showBlog?bloguserId=${item.userId}">
+                      <h1 class="text-muted">${item.title}</h1>
+                  </a>
 				<h3></h3>
 				<p>${item.explanation}<br>
 				</p>
 			  </div>
 			</div>
-			
-			
+
+
 	   	</c:forEach>
       </div>
     </div>
-	
+
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 

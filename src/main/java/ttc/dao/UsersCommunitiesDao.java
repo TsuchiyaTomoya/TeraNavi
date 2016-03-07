@@ -61,12 +61,13 @@ public class UsersCommunitiesDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
+
             StringBuffer sql = new StringBuffer();
-            System.out.println("メンバーアップデート");
+
             sql.append("update community_members_list set ");
 			sql.append(map.get("target"));
             sql.append(" where fk_user_id=? and fk_community_id=?");
-
+            System.out.println(new String(sql));
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
@@ -99,14 +100,19 @@ public class UsersCommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into community_members_list values(");
-            sql.append("?,?,'0','0')");
+            sql.append("?,?,?,'0')");
 
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-
-
+            
+//			コミュニティ作成者の時に管理者フラグを立てるための分岐処理
+			if(map.containsKey("adminFlag")){
+				pst.setString(3, (String)map.get("adminFlag"));
+			}else{
+				pst.setString(3,"0");
+			}
 
             result = pst.executeUpdate();
 

@@ -60,8 +60,6 @@ public class ArticleSortDao implements AbstractDao{
 
             ResultSet rs = pst.executeQuery();
 
-			StringBuffer sql2 = new StringBuffer();
-			sql2.append("select count(*) from comments where fk_article_id = ?");
             while(rs.next()){
                 ArticleBean article = new ArticleBean();
                 article.setArticleId(rs.getString(1));
@@ -72,14 +70,7 @@ public class ArticleSortDao implements AbstractDao{
                 article.setUserName(rs.getString(6));
                 article.setIconPath(rs.getString(7));
 
-				pst = cn.prepareStatement(new String(sql2));
-				pst.setString(1,article.getArticleId());
-				ResultSet rs2 = pst.executeQuery();
-				rs2.next();
-				article.setCommentCount(Integer.parseInt(rs2.getString(1)));
-
 				result.add(article);
-
 
             }
 

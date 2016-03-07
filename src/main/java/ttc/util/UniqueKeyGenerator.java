@@ -10,7 +10,7 @@ public abstract class UniqueKeyGenerator{
     
         String uId = UUID.randomUUID().toString();
 
-        System.out.println("uId = "+uId);
+        
 
 
         return uId;
@@ -31,7 +31,7 @@ public abstract class UniqueKeyGenerator{
         
         String mdStr = hexString(hash);
         
-        System.out.println("生成されたハッシュキー : "+mdStr);
+        
         
         
         return mdStr;

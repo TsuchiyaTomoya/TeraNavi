@@ -1,6 +1,6 @@
 package ttc.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TopicBean implements Bean{
     private String topicId;
@@ -9,7 +9,7 @@ public class TopicBean implements Bean{
     private String createUserName;
     private String updateDate;
     private String createDate;
-    private ArrayList chat;
+    private List chat;
     private String topicCreater;
     private String userIconPath;
     
@@ -114,7 +114,7 @@ public class TopicBean implements Bean{
 	* Returns value of chat
 	* @return
 	*/
-	public ArrayList getChat() {
+	public List getChat() {
 		return chat;
 	}
 
@@ -122,7 +122,7 @@ public class TopicBean implements Bean{
 	* Sets new value of chat
 	* @param
 	*/
-	public void setChat(ArrayList chat) {
+	public void setChat(List chat) {
 		this.chat = chat;
 	}
 

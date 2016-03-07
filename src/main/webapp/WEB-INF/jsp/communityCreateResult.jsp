@@ -10,16 +10,13 @@
 <head>
     <meta charset="UTF-8">
     <title>コミュニティ作成完了</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
 
 
 
@@ -30,18 +27,28 @@
 
     <div class="container">
        <div class="row">
-           <h1>作成完了</h1>
+            <div calss="col-md-8">
 
-               コミュニティ名${sessionScope.loginUser.community.name}<br>
-              説明文 ${sessionScope.loginUser.community.profile}<br>
-               コミュニティアイコン<img src='${sessionScope.loginUser.community.iconPath}'><br>
-
-              ヘッダ画像 <img src='${sessionScope.loginUser.community.headerPath}'><br>
+                <h1>コミュニティを作成しました</h1>
+                <p>３秒後に${sessionScope.loginUser.community.name}コミュニティに移動します<br>
+                    移動しないに場合は<a href="/TeraNavi/front/showcomm?commId=${sessionScope.loginUser.community.id}">こちら</a></p>
+          </div>
 
 
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+    $(document).ready( function(){
+
+        setTimeout(function(){
+            window.location.href = './showcomm?commId=${sessionScope.loginUser.community.id}';
+        }, 3000);
+
+    });
+
+
+    </script>
 
 
 </body>

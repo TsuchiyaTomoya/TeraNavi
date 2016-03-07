@@ -92,8 +92,8 @@ Vagrant.configure(2) do |config|
     sudo mysql -u root -f < /vagrant_data/TeraNavi/documents/create.sql
     sudo mysql -u root -f < /vagrant_data/TeraNavi/documents/insert.sql
     # ログ出力ディレクトリ
-    sudo mkdir -p /log/
     sudo rm -rf /log/
+    sudo mkdir -p /log/
     sudo touch /log/sql.log
     sudo chown -R tomcat:tomcat /log/sql.log
     sudo chmod 770 /log/sql.log
@@ -123,6 +123,17 @@ Vagrant.configure(2) do |config|
     # sudo rm -r /usr/lib/tomcat7/webapps/ROOT/
     sudo useradd -m -d /home/tomcat tomcat
     sudo chown -R tomcat:tomcat /usr/lib/tomcat7
+    # favicon設定
+    if [ ! -d /usr/lib/tomcat7/webapps/ROOT ]
+    then
+        sudo mkdir /usr/lib/tomcat7/webapps/ROOT
+    else
+        sudo rm -rf /usr/lib/tomcat7/webapps/ROOT/*.ico
+        echo "ROOT is already exists"
+    fi
+    sudo cp -fp /vagrant_data/TeraNavi/documents/favicon.ico /usr/lib/tomcat7/webapps/ROOT/favicon.ico
+    sudo chown -R tomcat:tomcat /usr/lib/tomcat7/webapps/ROOT/favicon.ico
+
     sudo -u tomcat /usr/lib/tomcat7/bin/shutdown.sh
     sudo -u tomcat /usr/lib/tomcat7/bin/startup.sh
     sudo cp -fp /vagrant_data/TeraNavi/documents/server.xml /usr/lib/tomcat7/conf/server.xml
@@ -131,5 +142,9 @@ Vagrant.configure(2) do |config|
     sudo service httpd restart
     sudo service iptables stop
     sudo chkconfig iptables off
+
+	sudo rm -rf /usr/lib/tomcat7/webapps/ROOT/*.ico
+	sudo cp -fp /vagrant_data/TeraNavi/documents/favicon.ico /usr/lib/tomcat7/webapps/ROOT/favicon.ico
+
    SHELL
 end

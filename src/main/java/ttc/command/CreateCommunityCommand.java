@@ -49,27 +49,41 @@ public class CreateCommunityCommand extends AbstractCommand{
             String userId=reqc.getParameter("userId")[0];
             params.put("userId",userId);
 
+
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
+			
+			params.clear();
+			params.put("userId", userId);
+			params.put("where","where  communities.fk_user_id = ? order by community_id desc");
+			CommunityBean community = (CommunityBean)dao.read(params);
 
-			AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("users");
-			dao = factory2.getAbstractDao();
+			factory = AbstractDaoFactory.getFactory("communitymember");
+			dao = factory.getAbstractDao();
+			params.clear();
+			params.put("userId", userId);
+			params.put("adminFlag","1");
+			params.put("commId", community.getId());
+			dao.insert(params);
+			
+			params.clear();
+			
+			params.put("value",loginId);
+			params.put("where","where user_id=?");
+			
+			factory = AbstractDaoFactory.getFactory("users");
+			dao = factory.getAbstractDao();
 
 			UserBean user = (UserBean)dao.read(params);
+
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-
-			CommunityBean community = new CommunityBean();
-
-			community.setName((String)params.get("commName"));
-			community.setProfile((String)params.get("commProfile"));
-			community.setIconPath((String)params.get("commIcon"));
-			community.setHeaderPath((String)params.get("commHeader"));
 
 			user.setCommunity(community);
 

@@ -28,13 +28,9 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="container">
+    <div class="container-fluid">
        <div class="row">
            <h1>${sessionScope.loginUser.community.name}コミュニティに参加しました</h1>
-
-
-
-
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

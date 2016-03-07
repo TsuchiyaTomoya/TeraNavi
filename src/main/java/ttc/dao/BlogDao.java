@@ -90,7 +90,7 @@ public class BlogDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
 
 			sql.append("select blog_title,");
-			sql.append("blog_header_path,blog_explanation ");
+			sql.append("blog_header_path,blog_explanation,user_id ");
 			sql.append("from users where blog_status_flag = 1");
 
 			if(map.containsKey("sort")){
@@ -107,7 +107,7 @@ public class BlogDao implements AbstractDao{
                 blog.setTitle(rs.getString(1));
                 blog.setHeaderPath(rs.getString(2));
                 blog.setExplanation(rs.getString(3));
-
+                blog.setUserId(rs.getString(4));
                 result.add(blog);
             }
 
@@ -133,12 +133,13 @@ public class BlogDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-			sql.append("select blog_title,blog_header_path,blog_explanation,blog_status_flag ");
-			sql.append("from users where user_id=? and blog_status_flag=1");
+			sql.append("select blog_title,blog_header_path,blog_explanation,blog_status_flag,user_id ");
+			sql.append("from users where user_id=? and blog_status_flag='1'");
 
             pst = cn.prepareStatement(new String(sql));
 
 			String target = (String)map.get("userId");
+
             pst.setString(1,target);
 
             ResultSet rs = pst.executeQuery();
@@ -149,36 +150,8 @@ public class BlogDao implements AbstractDao{
 				blog.setHeaderPath(rs.getString(2));
 				blog.setExplanation(rs.getString(3));
 				blog.setStatus(rs.getString(4));
-				blog.setUserId(target);
-
-				sql.setLength(0);
-				sql.append("SELECT article_id,article_title,article_body,article_created_date,article_status_flag ");
-				sql.append("from articles where fk_user_id=?");
-				if(map.containsKey("article_status")){
-					sql.append(map.get("article_status"));
-				}
-
-				pst = cn.prepareStatement(new String(sql));
-
-				pst.setString(1,target);
-				ResultSet rsA = pst.executeQuery();
-
-				List articles = new ArrayList();
-				while(rsA.next()){
-					ArticleBean article = new ArticleBean();
-					article.setArticleId(rsA.getString(1));
-					article.setTitle(rsA.getString(2));
-					article.setArticleBody(rsA.getString(3));
-					article.setCreatedDate(rs.getString(4));
-					articles.add(article);
-				}
-				blog.setArticles(articles);
-
+				blog.setUserId(rs.getString(5));
 			}
-
-
-
-
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
         }finally{

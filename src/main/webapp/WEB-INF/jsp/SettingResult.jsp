@@ -10,41 +10,55 @@
 <head>
     <meta charset="UTF-8">
     <title>登録結果</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+    <%-- トップのナビゲーションを読み込み --%>
+    <jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
-    <div class="container">
-       <div class="row">
-		   <img src="${sessionScope.loginUser.headerPath}" alt="" />
+    <div class="section">
+        <div class="container">
+           <div class="row">
 
-		  <img src="${sessionScope.loginUser.iconPath}" alt="" />
+                <!-- 2列をサイドメニューに割り当て -->
+                <div class="col-md-2">
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#blogSettingTab").attr("class","active");
+                      $("#openBlogTab").attr("class","active");
+                    </script>
 
+                </div>
 
-		   <h1>${sessionScope.loginUser.userName}さんの設定を変更したよ</h1>
+               <div calss="col-md-8">
+                   <h1>ユーザー情報を変更しました</h1>
+                   <p>３秒後にマイページに飛びます<br>
+                        戻らない場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a>をクリック</p>
 
-           <h2>
-               あなたの登録アドレスは「${sessionScope.loginUser.mailAddress}」です
-           </h2>
+                </div>
+            </div>
 
-		   <h2>自己紹介文</h2>
-		   <textarea>${sessionScope.loginUser.profile}</textarea>
-
-
-
-		   <a href="/TeraNavi/mypage"><h3>マイページはこちら</h3></a>
-
-       </div><!--end row-->
+        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+    $(document).ready( function(){
+
+        setTimeout(function(){
+            window.location.href = './mypage?paramUserId=${sessionScope.loginUser.id}';
+        }, 3000);
+
+    });
+
+
+    </script>
 </body>
 </html>

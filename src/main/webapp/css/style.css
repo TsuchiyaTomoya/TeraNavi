@@ -1,0 +1,64 @@
+
+.mobileThumbnail{
+	width: 60px;
+	float:left;
+}
+
+.mobile-user-name{
+	padding-top:20px;
+}
+
+.mobile-article-body{
+	padding-left: 15px;
+}
+
+.mobile-blog-title{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.mobile-content-space{
+	padding :10px;
+}
+
+#signup-modal-mobile{
+	width:100%;
+	
+	margin-top: 50px;
+}
+
+.mobile-sign-result{
+	height:400px;
+}
+
+#signUserNameMobile{
+	margin-top: 50px;
+}
+
+#signLoginIdMobile{
+	margin-top:80px;
+}
+
+#signMobileBtn{
+	margin-top: 80px
+}
+
+#loginmodal{
+	margin-top:140px;
+}
+
+
+#iconFile{
+	padding-top: 20x;
+	padding-bottom: 20px;
+}
+
+#headerFile{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#myModalMobile{
+	width: 100%;
+	margin-top: 50px;
+}

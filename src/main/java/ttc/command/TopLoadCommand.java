@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
@@ -45,6 +46,21 @@ public class TopLoadCommand extends AbstractCommand{
 			Map param1 = new HashMap();
 			param1.put("sortType","0");
 			List articles = dao.readAll(param1);
+			Iterator itr = articles.iterator();
+			
+			while(itr.hasNext()){
+				ArticleBean ab = (ArticleBean)itr.next();
+				param1.clear();
+				param1.put("articleId", ab.getArticleId());
+				factory = AbstractDaoFactory.getFactory("tag");
+				dao = factory.getAbstractDao();
+
+				ab.setTags(dao.readAll(param1));
+
+				factory = AbstractDaoFactory.getFactory("comment");
+				dao = factory.getAbstractDao();
+				ab.setComments(dao.readAll(param1));
+			}
 
 			if(articles.size() <= 6){
 				result.put("article", sliceArticleBody(articles));
@@ -107,7 +123,7 @@ public class TopLoadCommand extends AbstractCommand{
 				Map param = new HashMap();
 				param.put( "userId", ub.getId() );
 				param.put( "flag", "0" );
-				param.put( "option", " limit 1 " );
+				param.put( "option", "limit 1 " );
 				List departmentArticle = dao.readAll(param);
 				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
 			}
@@ -138,7 +154,7 @@ public class TopLoadCommand extends AbstractCommand{
 			String articleBody = ab.getArticleBody();
 			if(articleBody.length() > 30){
 				ab.setArticleBody( articleBody.substring(0,30) );
-				System.out.println(articleBody.substring(0,30));
+				
 			}
 			newArticles.add(ab);
 		}

@@ -19,8 +19,13 @@ import ttc.exception.PresentationException;
 import com.google.gson.Gson;
 
 import java.io.PrintWriter;
+import java.util.Collection;
 
 import ttc.bean.UserBean;
+
+import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
 
 public class WebApplicationController implements ApplicationController{
 
@@ -51,7 +56,7 @@ public class WebApplicationController implements ApplicationController{
 		HttpServletResponse res = (HttpServletResponse) resc.getResponse();
 
 		req.setAttribute("result",resc.getResult());
-		
+
 		String path = reqc.getCommandPath();
 
 		boolean flag = false;
@@ -72,13 +77,45 @@ public class WebApplicationController implements ApplicationController{
 			}
 		}else{
 
-			if(path.equals("login") || path.equals("signup") || path.equals("basic") || path.equals("createcomm")){
+			if(path.equals("login")){
+				Map result = (Map)resc.getResult();
+				HttpSession session = req.getSession(true);
+				session.setAttribute("loginUser",result.get("user"));
+				session.setAttribute("myCommunities",(Collection)result.get("community"));
+
+			}else if(path.equals("createcomm")){
+
+				HttpSession session = req.getSession(true);
+				UserBean ub = (UserBean)resc.getResult();
+				session.setAttribute("loginUser",ub);
+				List communities = (List)session.getAttribute("myCommunities");
+				communities.add(ub.getCommunity());
+				session.setAttribute("myCommunities", communities);
+
+			}else if(path.equals("withDrawComm")){
+				Map result = (Map)resc.getResult();
+				HttpSession session = req.getSession(true);
+				session.setAttribute("myCommunities",result.get("community"));
+
+			}else if(path.equals("partiComm")){
+				System.out.println("Session Add");
+				HttpSession session = req.getSession(true);
+
+				Map result = (Map)resc.getResult();
+				List communities = (List)session.getAttribute("myCommunities");
+				communities.add(result.get("community"));
+				session.setAttribute("myCommunities", communities);
+
+			}else if(path.equals("signup") || path.equals("basic") || path.equals("partiComm")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
-			}else if(path.equals("logout")){
+				session.setAttribute("myCommunities",new HashMap());
+			}else if(path.equals("logout")||path.equals("withdraw")){
 				HttpSession session = req.getSession(true);
 				session.removeAttribute("loginUser");
+				session.removeAttribute("myCommunities");
 				session.invalidate();
+
 
 			}else if(path.equals("blogCreate")){
 				HttpSession session = req.getSession(true);

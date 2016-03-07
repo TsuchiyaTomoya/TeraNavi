@@ -4,7 +4,7 @@ body{
 	padding-top: 60px;
 }
 
-#sform{
+.md_sform{
 	float:left;
 	width:414px;
 	margin-top: 12px;
@@ -44,7 +44,7 @@ body{
 	height:60px;
 }
 
-#target{
+.md_target{
 	float:left;
 	padding-left: 10px;
 	width: 80px;
@@ -77,7 +77,7 @@ body{
 	border-color: rgb(204,204,204);
 }
 
-input[name=keyword]{
+.md_keyword{
 	float:left;
 	height: 34px;
 	padding: 6px 12px;
@@ -106,7 +106,7 @@ input[name=keyword]{
 	width: 300px;
 }
 
-#searchbutton{
+.md_searchbutton{
 	float:left;
 	width: 34px;
 	height: 34px;
@@ -133,4 +133,21 @@ input[name=keyword]{
 
 #TeraNavi{
 	margin-right:100px;
+}
+
+.sm_search_keyword{
+	width: 100px;
+}
+
+.sm_search_target{
+	float: left;
+}
+
+.xs-header-nav{
+	z-index: 1080;
+}
+
+#loginModalMobile{
+	padding-top: 50%;
+	width: 100%;
 }

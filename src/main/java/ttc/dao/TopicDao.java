@@ -31,7 +31,7 @@ public class TopicDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            
             StringBuffer sql = new StringBuffer();
 
             sql.append("INSERT INTO ");
@@ -68,8 +68,7 @@ public class TopicDao implements AbstractDao{
     public List readAll(Map map)throws IntegrationException{
         List result = new ArrayList();
         PreparedStatement pst = null;
-        String comId= null;
-        comId=(String)map.get("communityId");
+        String commId= (String)map.get("communityId");
 
         try{
             Connection cn = null;
@@ -84,20 +83,20 @@ public class TopicDao implements AbstractDao{
 
             pst = cn.prepareStatement(new String(sql));
 
-			pst.setInt(1,Integer.parseInt(comId));
+			pst.setString(1, commId);
 
             ResultSet rs = pst.executeQuery();
 
             while(rs.next()){
-                TopicBean topics = new TopicBean();
-                topics.setTopicId(rs.getString(1));
-                topics.setCreateUserId(rs.getString(2));
-                topics.setName(rs.getString(3));
-                topics.setUpdateDate(rs.getString(4));
-                topics.setCreateDate(rs.getString(5));
-                topics.setCreateUserName(rs.getString(6));
-                topics.setUserIconPath(rs.getString(7));
-                result.add(topics);
+                TopicBean topic = new TopicBean();
+                topic.setTopicId(rs.getString(1));
+                topic.setCreateUserId(rs.getString(2));
+                topic.setName(rs.getString(3));
+                topic.setUpdateDate(rs.getString(4));
+                topic.setCreateDate(rs.getString(5));
+                topic.setCreateUserName(rs.getString(6));
+                topic.setUserIconPath(rs.getString(7));
+                result.add(topic);
             }
 
         }catch(SQLException e){

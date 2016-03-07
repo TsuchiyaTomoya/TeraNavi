@@ -13,6 +13,7 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import ttc.exception.business.ParameterInvalidException;
 
 public class WithDrawCommunityCommand extends AbstractCommand{
@@ -24,12 +25,13 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             Map result = new HashMap();
 
 			String target = reqc.getParameter("target")[0];
-			System.err.println(target);
-			
-            params.put("userId",reqc.getParameter("userId")[0]);
+
+			String userId = reqc.getParameter("userId")[0];
+
+            params.put("userId",userId);
             params.put("commId",reqc.getParameter("commId")[0]);
 			params.put("target",target);
-			
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
@@ -37,9 +39,19 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+            
+			factory = AbstractDaoFactory.getFactory("community");
+			dao = factory.getAbstractDao();
 
-			
+			params.clear();
+			params.put("where","where community_members_list.fk_user_id=?");
+			params.put("value", userId);
+			List communities = dao.readAll(params);
+
+			result.put("community", communities);
+
+
+            MySqlConnectionManager.getInstance().closeConnection();
 
             result.put("commName",reqc.getParameter("commName")[0]);
             resc.setResult(result);

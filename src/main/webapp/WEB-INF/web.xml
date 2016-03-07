@@ -10,10 +10,10 @@
    </welcome-file-list>
 
 
-   <!--<error-page>
+   <error-page>
 		<exception-type>ttc.exception.ApplicationException</exception-type>
 		<location>/WEB-INF/jsp/exception/ApplicationExceptionPage.jsp</location>
-	</error-page>-->
+	</error-page>
 
 
    <!-- 共通設定 -->

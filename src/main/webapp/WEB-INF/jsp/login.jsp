@@ -1,23 +1,15 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
     <title>ログイン</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
+    <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -26,13 +18,20 @@
 
     <div class="container">
        <div class="row">
-           <h1>ログインページ</h1>
-           <form action="/TeraNavi/front/login" method="post">
-               ログインID <input type="text" name="loginId"><br>
-               パスワード <input type="text" name="password"><br>
-               <input type="submit" value="ログイン">
-
-           </form>
+           <div class="col-md-4 col-md-offset-4" style="margin-top:50px;">
+               <h1 class="text-center">ログインページ</h1>
+               <form action="/TeraNavi/front/login" method="post">
+                   <div class="form-group">
+                       <label class="control-label">ログインID</label>
+                       <input class="form-control" type="text" name="loginId">
+                   </div>
+                   <div class="form-group">
+                       <label class="control-label">パスワード</label>
+                       <input class="form-control" type="password" name="password">
+                   </div>
+                   <button type="submit" class="btn btn-default pull-right">ログイン</button>
+               </form>
+           </div>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

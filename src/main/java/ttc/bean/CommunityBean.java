@@ -1,6 +1,6 @@
 package ttc.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CommunityBean implements Bean{
     private String id;
@@ -11,8 +11,8 @@ public class CommunityBean implements Bean{
     private String createdDate;
     private String deleteFlag;
     private int countMember;
-    private ArrayList members;
-    private ArrayList topics;
+    private List members;
+    private List topics;
     private String createUserId;
 	private String adminFlag;
 
@@ -134,7 +134,7 @@ public class CommunityBean implements Bean{
     * Returns value of members
     * @return
     */
-    public ArrayList getMembers() {
+    public List getMembers() {
     	return members;
     }
 
@@ -142,7 +142,7 @@ public class CommunityBean implements Bean{
     * Sets new value of members
     * @param
     */
-    public void setMembers(ArrayList members) {
+    public void setMembers(List members) {
     	this.members = members;
     }
 
@@ -150,7 +150,7 @@ public class CommunityBean implements Bean{
     * Returns value of topics
     * @return
     */
-    public ArrayList getTopics() {
+    public List getTopics() {
     	return topics;
     }
 
@@ -158,7 +158,7 @@ public class CommunityBean implements Bean{
     * Sets new value of topics
     * @param
     */
-    public void setTopics(ArrayList topics) {
+    public void setTopics(List topics) {
     	this.topics = topics;
     }
 

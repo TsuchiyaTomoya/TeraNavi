@@ -23,15 +23,24 @@ public class ShowTopicListCommand extends AbstractCommand{
             String communityId=reqc.getParameter("communityId")[0];
             Map params = new HashMap();
 
+            // 削除されていないコミュニティを取得するための条件
             params.put("where","where community_id=? and community_delete_flag=0");
+            params.put("communityId",reqc.getParameter("communityId")[0]);
+            // DAOの中でキーの値が統一されていないため、同じ値を違うキーで入れています。
+            // 犯人は土屋。
             params.put("commId",reqc.getParameter("communityId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();
-            
+
+            // コミュニティを取得
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
-            cb.setId(reqc.getParameter("communityId")[0]);
+
+            // コミュニティがもつトピックを取得
+            factory = AbstractDaoFactory.getFactory("topic");
+            dao = factory.getAbstractDao();
+            cb.setTopics(dao.readAll(params));
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

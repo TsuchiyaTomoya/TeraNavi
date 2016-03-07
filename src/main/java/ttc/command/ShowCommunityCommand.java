@@ -26,40 +26,48 @@ public class ShowCommunityCommand extends AbstractCommand{
 
             HashMap params = new HashMap();
 
+			String communityId = reqc.getParameter("commId")[0];
             params.put("where","where community_id=? and community_delete_flag=0");
-            params.put("commId",reqc.getParameter("commId")[0]);
+            params.put("commId",communityId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
+			
+			factory=AbstractDaoFactory.getFactory("topic");
+            dao= factory.getAbstractDao();
+			
+			params.clear();
+			params.put("communityId", communityId);
+			
             cb.setId(reqc.getParameter("commId")[0]);
-            List listx = new ArrayList();
-            List topicList = cb.getTopics();
-            if(topicList.size()>5){
+            List listx = dao.readAll(params);
+            List topicList = new ArrayList();
+            if(listx.size()>5){
                 for(int i = 0;i < 5;i++){
-                    listx.add(topicList.get(i));
+                    topicList.add(listx.get(i));
                 }
             }else{
-                listx=topicList;
+                topicList = listx;
             }
 
-            cb.setTopics((ArrayList)listx);
+            cb.setTopics(topicList);
 
 
 
-            AbstractDaoFactory fact=AbstractDaoFactory.getFactory("users");
-            AbstractDao abdao= fact.getAbstractDao();
+            factory=AbstractDaoFactory.getFactory("users");
+            dao= factory.getAbstractDao();
             ArrayList memebers=new ArrayList();
 
             params.put("where"," and fk_community_id=?");
             params.put("join"," join community_members_list on users.user_id = fk_user_id ");
 
-            params.put("value",reqc.getParameter("commId")[0]);
+            params.put("value",communityId);
             params.put("userStatus","0");
 
-			List list = (ArrayList)abdao.readAll(params);
+			List list = (ArrayList)dao.readAll(params);
 			List miniList = new ArrayList();
 			if(list.size()>5){
 				for(int i = 0;i < 5;i++){
@@ -71,7 +79,7 @@ public class ShowCommunityCommand extends AbstractCommand{
 
 
 
-            cb.setMembers((ArrayList)miniList);
+            cb.setMembers(miniList);
 
 
             MySqlConnectionManager.getInstance().commit();

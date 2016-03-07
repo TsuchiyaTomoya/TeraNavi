@@ -49,7 +49,7 @@ public class CreateTopicCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
 			resc.setResult(params);
-            resc.setTarget("topicCreateResult");
+            // resc.setTarget("topicCreateResult");
 
             return resc;
         }catch(NullPointerException e){

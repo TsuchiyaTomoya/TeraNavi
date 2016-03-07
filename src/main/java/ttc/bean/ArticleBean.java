@@ -124,6 +124,7 @@ public class ArticleBean implements Bean{
 	*/
 	public void setComments(List comments) {
 		this.comments = comments;
+		setCommentCount(this.comments.size());
 	}
 
 	/**

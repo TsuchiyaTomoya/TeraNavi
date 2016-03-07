@@ -11,6 +11,7 @@ import ttc.exception.business.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -40,21 +41,35 @@ public class LoginCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             UserBean ub = (UserBean)dao.read(params);
 
+            if(password.equals(ub.getPassword())){
+                ub.setPassword("dummy");
+                ub.setSecretAnswer("dummy");
+				
+				factory = AbstractDaoFactory.getFactory("community");
+				dao = factory.getAbstractDao();
+				
+				params.clear();
+				params.put("where","where community_members_list.fk_user_id=?");
+				params.put("value", ub.getId());
+				List communities = dao.readAll(params);
+				
+				Map result = new HashMap();
+				result.put("user", ub);
+				result.put("community", communities);
+				
+                resc.setResult(result);
+                resc.setTarget("LoginResult");
+
+            }else{
+                throw new PasswordInvalidException("パスワードが違います",null);
+            }
+			
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
-            if(password.equals(ub.getPassword())){
-                ub.setPassword("dummy");
-                ub.setSecretAnswer("dummy");
-                resc.setResult(ub);
-                resc.setTarget("LoginResult");
 
-                return resc;
-            }else{
-                throw new PasswordInvalidException("パスワードが違います",null);
-            }
-
+            return resc;
 
 
         }catch(NullPointerException e){

@@ -29,7 +29,7 @@ public class FileUploadServlet extends HttpServlet{
 
 	public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException{
 
-		System.out.println("ファイルのアップロードを開始します");
+		
 
 		req.setCharacterEncoding("utf-8");
 
@@ -81,7 +81,7 @@ public class FileUploadServlet extends HttpServlet{
 			throw new IOException(e.getMessage(),e);
 		}
 
-		System.out.println("ファイルのアップロードを完了しました");
+		
 
 		String responseJson = "{\"result\":\""+resultPath+"\"}";
 		res.setContentType("application/json;charset=UTF-8");

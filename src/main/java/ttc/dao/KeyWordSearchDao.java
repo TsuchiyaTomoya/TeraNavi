@@ -37,7 +37,7 @@ public class KeyWordSearchDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("select user_header_path,blog_title,blog_explanation ");
+            sql.append("select user_header_path,blog_title,blog_explanation,user_id ");
             sql.append("from users where blog_title like ?");
             for(int i=1;i<keywords.length;i++){
 
@@ -50,7 +50,7 @@ public class KeyWordSearchDao implements AbstractDao{
                 pst.setString(i+1,"%"+keywords[i]+"%");
             }
 
-            System.out.println("preSibakura");
+
 
             ResultSet rs = pst.executeQuery();
 
@@ -59,8 +59,9 @@ public class KeyWordSearchDao implements AbstractDao{
                 blog.setHeaderPath(rs.getString(1));
                 blog.setTitle(rs.getString(2));
                 blog.setExplanation(rs.getString(3));
+                blog.setUserId(rs.getString(4));
                 result.add(blog);
-                System.out.println("sibakura");
+
             }
 
         }catch(SQLException e){

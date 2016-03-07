@@ -3,7 +3,7 @@
 	position: absolute;
 	margin-bottom: 0px;
 	width: 100%;
-	background-color:#ddd;
+	background-color: #ddd
 }
 
 #twitter_icon{
@@ -19,4 +19,13 @@
 	padding:0px;
 	margin:0px;
 	border:0px;
+}
+
+#contact-modal{
+	margin-top: 50px;
+}
+
+#mobileContactTitle{
+	margin-top:5px;
+	margin-bottom:5px;
 }

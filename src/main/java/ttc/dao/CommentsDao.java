@@ -103,6 +103,7 @@ public class CommentsDao implements AbstractDao{
             
 			ResultSet rs = pst.executeQuery();
             while( rs.next() ){
+				
                 CommentBean cb = new CommentBean();
                 cb.setCommentId( rs.getString(1) );
                 cb.setArticleId( rs.getString(2) );

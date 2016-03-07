@@ -49,11 +49,11 @@ public class WebRequestContext implements RequestContext{
 
 		if(session.getAttribute("loginUser") != null){
 			UserBean ub = (UserBean)session.getAttribute("loginUser");
-			System.out.println(ub.getId());
+			
 			String[] userId = new String[1];
 			try{
 				userId[0] = ub.getId();
-				System.out.println("userId = "+userId[0]);
+				
 				parameters.put("userId", userId);
 			}catch(NullPointerException e){
 			 	throw new PresentationException(e.getMessage(), e);

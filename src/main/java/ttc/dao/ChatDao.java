@@ -29,7 +29,6 @@ public class ChatDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
 
             sql.append("select c.chat_id, u.user_name, u.user_id, u.user_icon_path, c.chat_body, c.chat_date, t.topic_id ");

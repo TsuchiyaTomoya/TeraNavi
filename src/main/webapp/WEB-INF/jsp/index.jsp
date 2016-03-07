@@ -17,6 +17,8 @@
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
     rel="stylesheet" type="text/css">
     <title>TeraNavi</title>
+	<link rel="SHORTCUT ICON" href="/TeraNavi/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/TeraNavi/css/index.css">
   </head>
 
   <body>
@@ -33,9 +35,21 @@
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-            <a class="btn btn-lg btn-warning text-center" href="/TeraNavi/front/top">TeraNaviへ</a>
+            <a class="btn btn-lg btn-warning text-center hidden-xs" href="/TeraNavi/front/top">TeraNaviへ</a>
           </div>
         </div>
+		<div class="vertical_bottom container">
+			
+			<div class="row" id="xsLog">
+				<a class="btn btn-warning btn-sm col-xs-offset-7 col-xs-4 visible-xs" href="/TeraNavi/login">ログイン</a>
+			</div>
+			
+			<div class="row">
+				<a class="btn btn-warning btn-sm col-xs-4 visible-xs" href="/TeraNavi/sign">登録</a>
+				<a class="btn btn-warning btn-sm col-xs-offset-2 col-xs-5 visible-xs" href="/TeraNavi/front/top">ログインせずに利用</a>
+			</div>
+			
+		</div>
       </div>
     </div>
   </body>

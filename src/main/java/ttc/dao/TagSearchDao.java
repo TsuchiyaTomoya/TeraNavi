@@ -55,22 +55,22 @@ public class TagSearchDao implements AbstractDao{
 
             ResultSet rs = pst.executeQuery();
 
-        while(rs.next()){
-                UserBean users = new UserBean();
-                users.setId(rs.getString(1));
-                users.setUserName(rs.getString(2));
-                users.setIconPath(rs.getString(3));
-                user_result.add(users);
-                ArticleBean article = new ArticleBean();
-                article.setArticleId(rs.getString(3));
-                article.setTitle(rs.getString(4));
-                article.setArticleBody(rs.getString(5));
-                article.setCreatedDate(rs.getString(6));
+			while(rs.next()){
+					UserBean users = new UserBean();
+					users.setId(rs.getString(1));
+					users.setUserName(rs.getString(2));
+					users.setIconPath(rs.getString(3));
+					user_result.add(users);
+					ArticleBean article = new ArticleBean();
+					article.setArticleId(rs.getString(3));
+					article.setTitle(rs.getString(4));
+					article.setArticleBody(rs.getString(5));
+					article.setCreatedDate(rs.getString(6));
 
-                article_result.add(article);
-        }
-        result.add(user_result);
-        result.add(article_result);
+					article_result.add(article);
+			}
+			result.add(user_result);
+			result.add(article_result);
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);

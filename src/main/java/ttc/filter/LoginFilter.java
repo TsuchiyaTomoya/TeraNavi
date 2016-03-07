@@ -8,7 +8,7 @@ import ttc.bean.UserBean;
 public class LoginFilter implements Filter{
   public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain){
     try{
-           System.out.println("ログインチェック");
+           
 
            // セッションが存在しない場合NULLを返す
            HttpSession session = ((HttpServletRequest)req).getSession();

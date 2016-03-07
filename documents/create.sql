@@ -29,7 +29,7 @@ create table tera_db.users(
 	sex char(1) not null,
 	-- 表示→0　非表示→1
 	sex_visible_flag char(1) default '0',
-	birth_date char(8) not null,
+	birth_date char(8),
 	mail_address varchar(40) not null unique,
 	password varchar(10) not null,
 	fk_secret_question_id int(1),
@@ -62,7 +62,8 @@ create table tera_db.communities(
 	community_profile varchar(400),
 	community_icon_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	community_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-	community_created_date datetime,fk_user_id int(8),
+	community_created_date datetime,
+	fk_user_id int(8),
 	-- 通常→0　削除→1
 	community_delete_flag char(1) not null,
 	index(community_id),

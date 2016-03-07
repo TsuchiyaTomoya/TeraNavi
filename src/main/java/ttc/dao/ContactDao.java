@@ -30,7 +30,6 @@ public class ContactDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into ");
             sql.append("contacts(contact_user_name,contact_title,contact_body," );

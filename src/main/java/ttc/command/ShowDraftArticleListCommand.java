@@ -19,7 +19,7 @@ import ttc.exception.business.ParameterInvalidException;
 public class ShowDraftArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
-            System.out.println("ShowArticleListCommand");
+            
             RequestContext reqc = getRequestContext();
 
             String userId = reqc.getParameter("writeUserId")[0];
