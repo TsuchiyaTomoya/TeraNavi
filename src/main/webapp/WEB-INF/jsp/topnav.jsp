@@ -11,10 +11,10 @@
 						<a href="/TeraNavi/front/top#blog" class="text-warning">ブログ</a>
 					</li>
 					<li>
-						<a href="/TeraNavi/front/top#community" class="text-warning">コミュニティ</a>
+						<a href="/TeraNavi/front/TopLoadCommunity" class="text-warning">コミュニティ</a>
 					</li>
 					<li>
-						<a href="/TeraNavi/front/top#tag" class="text-warning">タグ</a>
+						<a href="/TeraNavi/front/showTag" class="text-warning">タグ</a>
 					</li>
 					<li class="active">
 						<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
@@ -31,8 +31,8 @@
 			<ul class="list">
 				<li><a href="/TeraNavi/front/top">Top</a></li>
 				<li><a href="/TeraNavi/front/top#blog">ブログ</a></li>
-				<li><a href="/TeraNavi/front/top#community">コミュニティ</a></li>
-				<li><a href="/TeraNavi/front/top#tag">タグ</a></li>
+				<li><a href="/TeraNavi/front/TopLoadCommunity">コミュニティ</a></li>
+				<li><a href="/TeraNavi/front/showTag">タグ</a></li>
 
 				<li>
 					<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>

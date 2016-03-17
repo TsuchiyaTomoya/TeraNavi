@@ -79,6 +79,35 @@ public class TopLoadCommand extends AbstractCommand{
 			}
 
 
+<<<<<<< HEAD
+			// コミュニティの取得
+			factory = AbstractDaoFactory.getFactory("community");
+			dao = factory.getAbstractDao();
+
+			Map param2 = new HashMap();
+			// 新規コミュニティの取得処理
+			param2.put("where","Where community_delete_flag = 0");
+			param2.put("sort", " order by communities.community_created_date desc ");
+			List communities = dao.readAll(param2);
+
+			if(communities.size() <= 5){
+				result.put("hotCommunity",communities);
+			}else{
+				List nCommunities = new ArrayList();
+				for(int i = 0;i < 5;i++){
+					nCommunities.add(communities.get(i));
+				}
+
+				result.put("hotCommunity",nCommunities);
+			}
+
+			//人気コミュニティの取得処理
+			param2.clear();
+			param2.put("where","where community_delete_flag = 0");
+			param2.put("sort", " order by membercount limit 5 offset 0");
+			List popularCommunity = dao.readAll(param2);
+			result.put("popularCommunity", popularCommunity);
+=======
 			factory = AbstractDaoFactory.getFactory("blog");
 			dao = factory.getAbstractDao();
 			List blogs = dao.readAll(new HashMap());
@@ -95,32 +124,10 @@ public class TopLoadCommand extends AbstractCommand{
 			}
 
 			
+>>>>>>> b286ff329af312f919d01dab8f4aa141f9206d94
 
 
 			//ブログタブで表示する学科ごとの新着記事の取得
-			factory = AbstractDaoFactory.getFactory("users");
-			dao = factory.getAbstractDao();
-			Map param3 = new HashMap();
-			param3.put("userStatus","0");
-			param3.put("where"," and admin_flag > ?");
-			param3.put("value","1");
-			List users = dao.readAll(param3);
-			factory = AbstractDaoFactory.getFactory("article");
-			dao = factory.getAbstractDao();
-			List departmentArticles = new ArrayList();
-			for(int i=0; i<users.size(); i++){
-				UserBean ub = (UserBean)users.get(i);
-				Map param = new HashMap();
-				param.put( "userId", ub.getId() );
-				param.put( "flag", "0" );
-				param.put( "option", "limit 1 " );
-				List departmentArticle = dao.readAll(param);
-				if( departmentArticle.size() > 0 ){
-					departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
-				}
-			}
-			result.put( "department", departmentArticles );
-
 
 			param1.clear();
 
